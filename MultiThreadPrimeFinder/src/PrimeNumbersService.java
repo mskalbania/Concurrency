@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PrimeNumbersService {
 
@@ -20,7 +21,10 @@ public class PrimeNumbersService {
         configureThreads();
         startThreads();
         getPrimesFromThreads();
-        return primeNumbers;
+        return primeNumbers.stream()
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private void configureThreads() {
